@@ -1,23 +1,22 @@
 #include "matrix.h"
 
-s_matrix* mat_mult(const s_matrix* a, const s_matrix* b)
+s_matrix* mat_mult(s_matrix* res, const s_matrix* a, const s_matrix* b)
 {
     double *it_a = NULL;
     double *it_b = NULL;
     double *it_r = NULL;
-    s_matrix *res = NULL;
     double *it_tmp_a = NULL;
     double *it_tmp_b = NULL;
 
-    assert(a != NULL && b != NULL);
+    assert(a != NULL && b != NULL && res != NULL);
 
-    if (a->c != a->l)
+    if (a->c != b->l || a->c != res->c || b->l != res->l)
+    {
+        fprintf(stderr, "Matrix multiplication: dimensions don't match");
         return (NULL);
+    }
 
     it_a = a->arr;
-
-    if (!(res = mat_build(a->l, b->c)))
-        return (NULL);
 
     it_r = res->arr;
 

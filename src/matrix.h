@@ -58,7 +58,7 @@ void mat_print(const s_matrix* m, int verbose);
  **         for instance)
  */
 
-s_matrix* mat_mult(const s_matrix* a, const s_matrix* b);
+s_matrix* mat_mult(s_matrix* res, const s_matrix* a, const s_matrix* b);
 
 void mat_scale(s_matrix* a, double s);
 
