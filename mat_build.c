@@ -64,6 +64,27 @@ s_matrix* mat_build_0(size_t l, size_t c)
     return (new_mat);
 }
 
+s_matrix* mat_build_rand(size_t l, size_t c)
+{
+    s_matrix* new_mat = NULL;
+    double* it = NULL;
+    size_t it_c = 0;
+    size_t size = 0;
+
+    srand(time(NULL));
+
+    if (!(new_mat = mat_build(l, c)))
+        return (NULL);
+
+    it = new_mat->arr;
+    size = new_mat->size_arr;
+
+    for (; it_c < size; ++it_c, ++it)
+        *it = (double)rand() / (double)RAND_MAX;
+
+    return (new_mat);
+}
+
 int mat_free(s_matrix* m)
 {
     if (m)
@@ -76,7 +97,7 @@ int mat_free(s_matrix* m)
     return 0;
 }
 
-void mat_print(s_matrix* m, int verbose)
+void mat_print(const s_matrix* m, int verbose)
 {
     double *it = NULL;
 
