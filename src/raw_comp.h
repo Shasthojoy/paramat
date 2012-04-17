@@ -6,7 +6,8 @@
 
 /**
 ** @brief The purpose of these functions are primarly for
-**        parallel computation purposes
+**        parallel computation. They are 'raw' meaning that
+**        they are not for direct use
 */
 
 #ifndef RAW_COMP_H_
@@ -17,5 +18,14 @@
 # include <assert.h>
 
 
+# define SIMP_MUL ((*it_r) += (*it_a) * (*it_b))
+# define COEF_MUL(s) ((*it_r) += s * (*it_a) * (*it_b))
+
+
+inline s_matrix* raw_mult(s_matrix* res,
+                          const s_matrix* a,
+                          const s_matrix* b);
+
+# include "raw_mult.hh"
 
 #endif /* !RAW_COMP_H_ */
