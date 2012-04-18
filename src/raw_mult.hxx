@@ -8,31 +8,30 @@
     {\
         double *it_a = NULL;\
         double *it_b = NULL;\
-    double *it_r = NULL;\
-    double *it_tmp_a = NULL;\
-    double *it_tmp_b = NULL;\
-    size_t a_col = a->c;\
-    size_t b_col = b->c;\
-    it_a = a->arr;\
-    it_r = res->arr;\
-    for (size_t i = 0; i < res->l; ++i, it_a += a->c)\
-    {\
-        it_b = b->arr;\
-        it_tmp_a = it_a;\
-        for (size_t j = 0; j < res->c; ++j, ++it_r, ++it_b)\
+        double *it_r = NULL;\
+        double *it_tmp_a = NULL;\
+        double *it_tmp_b = NULL;\
+        size_t a_col = a->c;\
+        size_t b_col = b->c;\
+        it_a = a->arr;\
+        it_r = res->arr;\
+        for (size_t i = 0; i < res->l; ++i, it_a += a->c)\
         {\
-            *it_r = 0.;\
-            it_tmp_b = it_b;\
-            operation\
-            it_a = it_tmp_a;\
-            it_b = it_tmp_b;\
+            it_b = b->arr;\
+            it_tmp_a = it_a;\
+            for (size_t j = 0; j < res->c; ++j, ++it_r, ++it_b)\
+            {\
+                *it_r = 0.;\
+                it_tmp_b = it_b;\
+                operation\
+                it_a = it_tmp_a;\
+                it_b = it_tmp_b;\
+            }\
         }\
     }\
-}\
-while (0);
+    while (0);
 
 
-/*
 inline s_matrix* raw_mult_sum(s_matrix* res,
                               const double** mat_arrs,
                               const s_matrix* a,
@@ -44,7 +43,7 @@ inline s_matrix* raw_mult_sum(s_matrix* res,
     double *it_r = NULL;
     double *it_tmp_a = NULL;
     double *it_tmp_b = NULL;
-    double **m_it = NULL;
+    const double **m_it = NULL;
 
     it_a = a->arr;
     it_r = res->arr;
@@ -57,10 +56,11 @@ inline s_matrix* raw_mult_sum(s_matrix* res,
         {
             *it_r = 0.;
             it_tmp_b = it_b;
+            m_it = mat_arrs;
 
-            for (size_t m = 0, m_it = mats_arrs; m < nb_matrices; ++m, ++m_it)
+            for (size_t m = 0; m < nb_matrices; ++m, ++m_it)
             {
-                *it_r += **m_it;
+                (*it_r) += (**m_it);
                 ++(*m_it);
             }
 
@@ -71,5 +71,5 @@ inline s_matrix* raw_mult_sum(s_matrix* res,
             it_b = it_tmp_b;
         }
     }
-}*/
+}
 #endif /* !RAW_MULT_HXX */

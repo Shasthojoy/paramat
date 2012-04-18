@@ -20,20 +20,20 @@
 
 # define SIMP_MUL \
     do\
-{\
-            for (size_t k = 0; k < a_col; ++k, ++it_a, it_b += b_col)\
-                            (*it_r) += (*it_a) * (*it_b);\
-}\
+    {\
+        for (size_t k = 0; k < a_col; ++k, ++it_a, it_b += b_col)\
+            (*it_r) += (*it_a) * (*it_b);\
+    }\
     while(0);\
 
 
 # define COEF_MUL(s) \
     do\
-{\
-            for (size_t k = 0; k < a_col; ++k, ++it_a, it_b += b_col)\
-                            (*it_r) += (*it_a) * (*it_b);\
-            (*it_r) *= s;\
-}\
+    {\
+       for (size_t k = 0; k < a_col; ++k, ++it_a, it_b += b_col)\
+          (*it_r) += (*it_a) * (*it_b);\
+       (*it_r) *= s;\
+    }\
     while(0);\
 
 
