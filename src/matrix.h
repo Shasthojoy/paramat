@@ -58,9 +58,11 @@ void mat_print(const s_matrix* m, int verbose);
  **         for instance)
  */
 
-s_matrix* mat_mult(s_matrix* res, const s_matrix* a, const s_matrix* b);
 
 void mat_scale(s_matrix* a, double s);
+
+# include "raw_comp.h"
+# include "mat_mult.hxx"
 
 
 #endif /* !MATRIX_H_ */

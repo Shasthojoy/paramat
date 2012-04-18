@@ -3,7 +3,7 @@
 
 # include "raw_comp.h"
 
-# define RAW_MULT(res, a, b)\
+# define RAW_MULT(res, a, b, operation)\
     do\
     {\
         double *it_a = NULL;\
@@ -11,6 +11,8 @@
     double *it_r = NULL;\
     double *it_tmp_a = NULL;\
     double *it_tmp_b = NULL;\
+    size_t a_col = a->c;\
+    size_t b_col = b->c;\
     it_a = a->arr;\
     it_r = res->arr;\
     for (size_t i = 0; i < res->l; ++i, it_a += a->c)\
@@ -21,13 +23,13 @@
         {\
             *it_r = 0.;\
             it_tmp_b = it_b;\
-            OPERATION\
+            operation\
             it_a = it_tmp_a;\
             it_b = it_tmp_b;\
         }\
     }\
 }\
-while (0)
+while (0);
 
 
 /*
