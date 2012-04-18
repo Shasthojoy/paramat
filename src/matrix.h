@@ -49,6 +49,13 @@ int mat_free(s_matrix* m);
 
 void mat_print(const s_matrix* m, int verbose);
 
+
+inline s_matrix *mat_sum(s_matrix *res, s_matrix *a, s_matrix *b);
+
+void mat_scale(s_matrix* a, double s);
+
+# include "raw_comp.h"
+
  /**
  ** @brief mat_mult will multiply two matrices together
  **        if A is of dimensions n * m and B of dimensions
@@ -58,11 +65,9 @@ void mat_print(const s_matrix* m, int verbose);
  **         for instance)
  */
 
-
-void mat_scale(s_matrix* a, double s);
-
-# include "raw_comp.h"
 # include "mat_mult.hxx"
+
+# include "mat_sum.hxx"
 
 
 #endif /* !MATRIX_H_ */
