@@ -1,8 +1,7 @@
-#ifndef MAT_SUM_HXX
-# define MAT_SUM_HXX
+#ifndef MAT_SUM_HXX_
+# define MAT_SUM_HXX_
 
-# include "matrix.h"
-
+# include "mat_sum.h"
 
 inline s_matrix *mat_sum(s_matrix *res, s_matrix *a, s_matrix *b)
 {
@@ -16,7 +15,7 @@ inline s_matrix *mat_sum(s_matrix *res, s_matrix *a, s_matrix *b)
         res->c != a->c)
     {
         fprintf(stderr, "Matrix addition: dimensions don't match");
-        return NULL;
+        return (NULL);
     }
 
     it_a = a->arr;
@@ -29,4 +28,4 @@ inline s_matrix *mat_sum(s_matrix *res, s_matrix *a, s_matrix *b)
     return (res);
 }
 
-#endif /* !MAT_SUM_HXX */
+#endif /* !MAT_SUM_HXX_ */

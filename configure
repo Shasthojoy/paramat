@@ -1,5 +1,5 @@
 echo "CC=gcc" > Makefile.rules
-echo 'SRC=mat_build.c mat_mult.c main.c' >> Makefile.rules
+echo 'SRC=mat_build.c main.c' >> Makefile.rules
 echo 'OBJ=$(SRC:.c=.o)' >> Makefile.rules
 echo "BINTEST=a.out" >> Makefile.rules
 echo "FLAGS=-Wall -Wextra -Werror -pedantic -std=c99" >> Makefile.rules

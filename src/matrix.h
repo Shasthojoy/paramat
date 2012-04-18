@@ -13,14 +13,12 @@
 # include <time.h>
 # include <limits.h>
 
+# include "mat_struct.h"
+# include "mat_mult.h"
+# include "mat_sum.h"
+# include "mat_build.h"
 
-typedef struct
-{
-    size_t l;
-    size_t c;
-    size_t size_arr;
-    double *arr;
-} s_matrix;
+# include "raw_comp.h"
 
  /**
  ** @brief mat_build* will create a matrix of given dimensions
@@ -50,12 +48,6 @@ int mat_free(s_matrix* m);
 void mat_print(const s_matrix* m, int verbose);
 
 
-inline s_matrix *mat_sum(s_matrix *res, s_matrix *a, s_matrix *b);
-
-void mat_scale(s_matrix* a, double s);
-
-# include "raw_comp.h"
-
  /**
  ** @brief mat_mult will multiply two matrices together
  **        if A is of dimensions n * m and B of dimensions
@@ -64,10 +56,5 @@ void mat_scale(s_matrix* a, double s);
  **         something went wrong (dimensions don't match
  **         for instance)
  */
-
-# include "mat_mult.hxx"
-
-# include "mat_sum.hxx"
-
 
 #endif /* !MATRIX_H_ */

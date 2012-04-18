@@ -1,4 +1,4 @@
-#include "matrix.h"
+#include "mat_build.h"
 
 s_matrix* mat_build(size_t l, size_t c)
 {
