@@ -1,8 +1,7 @@
 include ../Makefile.rules
 
 all: ${OBJ}
-	${CC} ${FLAGS} -o ${BINTEST}
-	mv ${BINTEST} ..
+	${CC} ${FLAGS} ${OBJ} -o ${BINTEST}
 
 %.o:
 	${CC} ${FLAGS} -c $(@:.o=.c)

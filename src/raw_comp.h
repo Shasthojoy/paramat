@@ -18,14 +18,25 @@
 # include <assert.h>
 
 
-# define SIMP_MUL ((*it_r) += (*it_a) * (*it_b))
-# define COEF_MUL(s) ((*it_r) += s * (*it_a) * (*it_b))
+# define SIMP_MUL {\
+            for (size_t k = 0; k < a->c; ++k, ++it_a, it_b += b->c)\
+                            (*it_r) += (*it_a) * (*it_b);\
+}
 
+# define COEF_MUL(s) {\
+            for (size_t k = 0; k < a->c; ++k, ++it_a, it_b += b->c)\
+                            (*it_r) += (*it_a) * (*it_b);\
+            (*it_r) *= s;\
+}
 
-inline s_matrix* raw_mult(s_matrix* res,
-                          const s_matrix* a,
-                          const s_matrix* b);
-
-# include "raw_mult.hh"
+# define OPERATION SIMP_MUL
+/*
+inline s_matrix* raw_mult_sum(s_matrix* res,
+                              const double** mat_arrs,
+                              const s_matrix* a,
+                              const s_matrix* b,
+                              size_t nb_matrices);
+                              */
+# include "raw_mult.hxx"
 
 #endif /* !RAW_COMP_H_ */
