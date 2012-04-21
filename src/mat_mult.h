@@ -14,6 +14,10 @@
 # include "mat_struct.h"
 
 void mat_scale(s_matrix* a, double s);
+s_matrix *mat_mult_para(s_matrix *res,
+                        s_matrix *a,
+                        s_matrix *b,
+                        size_t nb_proc);
 
 # include "mat_mult.hxx"
 
