@@ -18,5 +18,9 @@
 s_matrix* mat_build(size_t l, size_t c);
 s_matrix* mat_build_id(size_t l, size_t c);
 s_matrix* mat_build_0(size_t l, size_t c);
+inline void mat_reset(s_matrix* mat)
+{
+    mat->it = mat->arr;
+}
 
 #endif /* !MAT_BUILD_H_ */

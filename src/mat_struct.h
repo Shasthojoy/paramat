@@ -18,6 +18,7 @@ typedef struct
     size_t c;
     size_t size_arr;
     double *arr;
+    double *it;
 } s_matrix;
 
 

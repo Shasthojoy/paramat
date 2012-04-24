@@ -14,6 +14,7 @@ s_matrix* mat_build(size_t l, size_t c)
         new_mat->c = c;
         new_mat->size_arr = size;
         new_mat->arr = malloc(sizeof (double) * size);
+        new_mat->it = new_mat->arr;
     }
     return (new_mat);
 }

@@ -18,23 +18,43 @@
 # include <assert.h>
 
 
-# define SIMP_MUL \
+# define COEF_MUL(s, operation) \
     do\
     {\
-        for (size_t k = 0; k < a_col; ++k, ++it_a, it_b += b_col)\
-            (*it_r) += (*it_a) * (*it_b);\
-    }\
-    while(0);\
-
-
-# define COEF_MUL(s) \
-    do\
-    {\
-       for (size_t k = 0; k < a_col; ++k, ++it_a, it_b += b_col)\
-          (*it_r) += (*it_a) * (*it_b);\
        (*it_r) *= s;\
+       operation\
     }\
     while(0);\
+
+ /**
+ ** RESET mat_c before and after use
+ */
+
+# define ADD(mat_c, operation)\
+    do\
+    {\
+        *it_r += (mat_c->it++);\
+        operation\
+    }\
+    while(0);
+
+ /**
+ ** RESET mat_c before and after use
+ */
+
+# define SUB(mat_c, operation)\
+    do\
+    {\
+        *it_r -= (mat_c->it++);\
+        operation\
+    }\
+    while(0);
+
+ /**
+ ** Identity operation, leaves it_r unchanged
+ */
+
+# define ID
 
 
 /*
