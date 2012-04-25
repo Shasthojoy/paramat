@@ -141,6 +141,7 @@ s_matrix* mat_build_from_file(const char* file)
         new_mat->arr = malloc(sizeof (double) * size);
         read(fd, new_mat->arr, size * sizeof (double));
         new_mat->it = new_mat->arr;
+        close(fd);
     }
     return new_mat;
 }
@@ -160,4 +161,6 @@ void mat_write_to_file(const s_matrix* mat, const char* file)
     write(fd, &mat->l, sizeof (unsigned int));
     write(fd, &mat->c, sizeof (unsigned int));
     write(fd, mat->arr, mat->size_arr * sizeof (double));
+
+    close(fd);
 }
