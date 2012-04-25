@@ -1,6 +1,5 @@
 /*
-** file: matrix.h
-** author: benjamin
+** file: matrix.h ** author: benjamin
 ** created on 16/04/12 at 15:42
 */
 
@@ -20,41 +19,6 @@
 
 # include "raw_comp.h"
 
- /**
- ** @brief mat_build* will create a matrix of given dimensions
- ** @return the matrix newly created or a NULL value if
- **         something went wrong
- */
 
-s_matrix* mat_build(size_t l, size_t c);
-s_matrix* mat_build_id(size_t l, size_t c);
-s_matrix* mat_build_0(size_t l, size_t c);
-
- /**
- ** @brief mat_build* will create a matrix of given dimensions
- **        initialized with random values between 0 and 1
- ** @return the matrix newly created or a NULL value if
- **         something went wrong
- */
-s_matrix* mat_build_rand(size_t l, size_t c);
-
- /**
- ** @brief mat_build* will free any given matrix
- ** @return 1 if memory freeing went well and 0 if
- **         something went wrong
- */
-int mat_free(s_matrix* m);
-
-void mat_print(const s_matrix* m, int verbose);
-
-
- /**
- ** @brief mat_mult will multiply two matrices together
- **        if A is of dimensions n * m and B of dimensions
- **        m * p then R = A * B is of dim n * p
- ** @return the resulting matrix or a NULL value if
- **         something went wrong (dimensions don't match
- **         for instance)
- */
 
 #endif /* !MATRIX_H_ */

@@ -14,8 +14,8 @@
 
 typedef struct
 {
-    size_t l;
-    size_t c;
+    unsigned int l;
+    unsigned int c;
     size_t size_arr;
     double *arr;
     double *it;

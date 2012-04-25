@@ -46,6 +46,11 @@ s_matrix* mat_build_id(size_t l, size_t c)
     return (new_mat);
 }
 
+void mat_reset(s_matrix* mat)
+{
+    mat->it = mat->arr;
+}
+
 s_matrix* mat_build_0(size_t l, size_t c)
 {
     s_matrix* new_mat = NULL;
@@ -114,4 +119,45 @@ void mat_print(const s_matrix* m, int verbose)
     }
 }
 
+s_matrix* mat_build_from_file(const char* file)
+{
+    int fd = 0;
+    s_matrix* new_mat = NULL;
+    size_t size = 0;
 
+    new_mat = malloc(sizeof (s_matrix));
+    if (new_mat)
+    {
+        fd = open(file, O_RDONLY);
+        if (fd < 0)
+        {
+            perror("");
+            return (NULL);
+        }
+        read(fd, &new_mat->l, sizeof (unsigned int));
+        read(fd, &new_mat->c, sizeof (unsigned int));
+        size = new_mat->l * new_mat->c;
+        new_mat->size_arr = size;
+        new_mat->arr = malloc(sizeof (double) * size);
+        read(fd, new_mat->arr, size * sizeof (double));
+        new_mat->it = new_mat->arr;
+    }
+    return new_mat;
+}
+
+void mat_write_to_file(const s_matrix* mat, const char* file)
+{
+    int fd = 0;
+
+    assert (mat != NULL);
+
+    fd = open(file, O_WRONLY | O_CREAT | O_TRUNC);
+    if (fd < 0)
+    {
+        perror("");
+        return;
+    }
+    write(fd, &mat->l, sizeof (unsigned int));
+    write(fd, &mat->c, sizeof (unsigned int));
+    write(fd, mat->arr, mat->size_arr * sizeof (double));
+}
