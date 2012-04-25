@@ -1,2 +1,3 @@
-. Prepare some tests to test all possibles transpose/ sub adding/ sub
-  substracting combinations
+. Write a matrix expression parser
+. Finish the test_gen binary generating tests to perfrom on paramat
+  to be compared with matlab outputs
