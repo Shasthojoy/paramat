@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 
     mat_scale(mat3, 2.);
 
-    RAW_MULT(res, mat1, mat2, TT, HAD(mat3, ID));
+    RAW_MULT(res, mat1, mat2, TT, ID, HAD(mat3, ID));
 
     mat_reset(res);
     mat_print(res, 1);
