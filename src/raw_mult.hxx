@@ -13,7 +13,7 @@
 **                  COEF_MUL, ADD or SUB (cf. raw_comp.h)
 */
 
-# define RAW_MULT(res, a, b, t, operation)\
+# define RAW_MULT(res, a, b, t, pre_op, post_op)\
     do\
     {\
         double *it_a = NULL;\
@@ -39,12 +39,12 @@
             it_tmp_a = it_a;\
             for (size_t j = 0; j < res->c; ++j, ++it_r, t ## _MAIN_ITB)\
             {\
-                *it_r = 0.;\
+                pre_op\
                 it_tmp_b = it_b;\
                 for (size_t k = 0; k < t ## _COM_DIM; \
                         ++k, t ## _SUB_ITA, t ## _SUB_ITB)\
                     (*it_r) += (*it_a) * (*it_b);\
-                operation\
+                post_op\
                 it_a = it_tmp_a;\
                 it_b = it_tmp_b;\
             }\

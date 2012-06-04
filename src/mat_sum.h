@@ -15,6 +15,7 @@
 
 
 s_matrix *mat_sum(s_matrix *res, s_matrix *a, s_matrix *b);
+s_matrix *mat_diff(s_matrix *res, s_matrix *a, s_matrix *b);
 
 # include "mat_sum.hxx"
 

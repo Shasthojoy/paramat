@@ -10,19 +10,19 @@ int main(int argc, char** argv)
     s_matrix *mat2 = mat_build_id(10, 10);
     s_matrix *mat3 = mat_build_id(10, 10);
     s_matrix *res = mat_build(10, 10);
-    MAT_MULT(res, mat1, mat2, TT, COEF_MUL(5., ID));
-    mat_scale(res, 6.);
-    mat_sum(res, res, mat3);
+
+    mat_scale(mat3, 2.);
+
+    RAW_MULT(res, mat1, mat2, TT, HAD(mat3, ID));
+
     mat_reset(res);
-    mat_write_to_file(res, "outmat.dat");
     mat_print(res, 1);
 
     mat_free(mat1);
     mat_free(mat2);
     mat_free(res);
+    mat_free(mat3);
 
-    res = mat_build_from_file("outmat.dat");
-    mat_print(res, 1);
 
 
 

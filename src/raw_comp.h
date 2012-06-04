@@ -33,7 +33,7 @@
 # define ADD(mat_c, operation)\
     do\
     {\
-        *it_r += (mat_c->it++);\
+        *it_r += *(mat_c->it++);\
         operation\
     }\
     while(0);
@@ -45,17 +45,46 @@
 # define SUB(mat_c, operation)\
     do\
     {\
-        *it_r -= (mat_c->it++);\
+        *it_r -= *(mat_c->it++);\
         operation\
     }\
     while(0);
+
+# define HAD(mat_c, operation)\
+   do\
+   {\
+       *it_r *= *(mat_c->it++);\
+        operation\
+   }\
+   while(0);
 
  /**
  ** Identity operation, leaves it_r unchanged
  */
 
+# define ZERO(mat_c, operation)\
+   do\
+   {\
+       *it_r = 0;\
+        operation\
+   }\
+   while(0);
+
 # define ID
 
+
+
+# define RAW_MAP(res, a, fun)\
+  do\
+  {\
+    double *it_a = NULL;\
+    double *it_r = NULL;\
+    it_a =  a->arr;\
+    it_r = r->arr;\
+    for (size_t i = 0; i < a->size_arr; ++i, ++it_a, ++it_r)\
+      it_r = fun(*it_a);\
+  }\
+  while (0);
 
 /*
 inline s_matrix* raw_mult_sum(s_matrix* res,
