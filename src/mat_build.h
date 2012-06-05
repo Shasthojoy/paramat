@@ -39,6 +39,7 @@ void mat_print(const s_matrix* m, int verbose);
 void mat_print_matlab(const s_matrix* m);
 void mat_write_to_file(const s_matrix* mat, const char* file);
 
+void mat_set(s_matrix* mat, ...);
 
 void mat_reset(s_matrix* mat);
 

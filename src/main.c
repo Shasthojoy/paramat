@@ -15,11 +15,13 @@ int main(int argc, char** argv)
 
     if (res)
     {
+        mat_set(mat3, 1., 2., 3., 4.);
 
         mat_reset(res);
         mat_print(mat1, 1);
         mat_print(mat2, 1);
         mat_print(res, 1);
+        mat_print(mat3, 1);
 
         mat_free(mat1);
         mat_free(mat2);

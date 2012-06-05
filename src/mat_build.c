@@ -51,6 +51,24 @@ void mat_reset(s_matrix* mat)
     mat->it = mat->arr;
 }
 
+void mat_set(s_matrix* mat, ...)
+{
+    va_list ptr = NULL;
+    double* it = NULL;
+    size_t size = 0;
+    size_t it_c = 0;
+
+    va_start(ptr, mat);
+
+    it = mat->arr;
+    size = mat->size_arr;
+
+    for (; it_c < size; ++it_c, ++it)
+        *it = va_arg(ptr, double);
+    va_end(ptr);
+
+}
+
 s_matrix* mat_build_0(size_t l, size_t c)
 {
     s_matrix* new_mat = NULL;
