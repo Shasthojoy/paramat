@@ -19,8 +19,8 @@
     {\
       assert(a != NULL && b != NULL && res != NULL);\
       if (t ## _COL_A(a) != t ## _LINE_B(b) \
-              || t ## _COL_A(a) != res->c \
-              || t ## _LINE_B(b) != res->l)\
+              || t ## _LINE_A(a) != res->l \
+              || t ## _COL_B(b) != res->c)\
       {\
           fprintf(stderr, "Matrix multiplication: dimensions don't match");\
           res = NULL;\

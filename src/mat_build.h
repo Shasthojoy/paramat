@@ -36,6 +36,7 @@ s_matrix* mat_build_from_file(const char* file);
  */
 s_matrix* mat_build_rand(size_t l, size_t c);
 void mat_print(const s_matrix* m, int verbose);
+void mat_print_matlab(const s_matrix* m);
 void mat_write_to_file(const s_matrix* mat, const char* file);
 
 

@@ -7,7 +7,7 @@ all: ${OBJ}
 	${CC} ${FLAGS} -c $(@:.o=.c)
 
 clean:
-	rm -fR *.o *.a *.so .*.swp
+	rm -fR *.o *.a *.so .*.swp a.out
 
 distclean: clean
 

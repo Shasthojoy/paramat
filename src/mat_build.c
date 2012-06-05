@@ -146,6 +146,20 @@ s_matrix* mat_build_from_file(const char* file)
     return new_mat;
 }
 
+void mat_print_matlab(const s_matrix* m)
+{
+    const double* it = m->arr;
+    printf("[");
+    for (size_t i = 0; i < m->l; i++)
+    {
+        for (size_t j = 0; j < m->c; j++, it++)
+            printf(" %f", *it);
+        if (i < m->l - 1)
+            printf(" ; ");
+    }
+    printf("\n");
+}
+
 void mat_write_to_file(const s_matrix* mat, const char* file)
 {
     int fd = 0;
