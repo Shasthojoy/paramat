@@ -1,14 +1,9 @@
 #! /bin/bash
 
-./gen_mul.sh ../src/main.c test1.oct $1
-cd ../src
-make
-cd ../test_gen
-RES1="`../src/a.out | sed 's/\.[0-9]*//g' | grep '[0-9]\+ [0-9]\+' | sed 's/^ //g' | sed 's/ +/ /g'`"
+./gen_mul.sh 'test' 'test1.oct' $1
+
+RES1="`./a.out test1.pm test2.pm | sed 's/\.[0-9]*//g' | grep '[0-9]\+ [0-9]\+' | sed 's/^ //g' | sed 's/ +/ /g'`"
 RES2="`octave -q test1.oct | sed 's/\.[0-9]*//g' | grep '[0-9]\+ \+[0-9]\+' | sed 's/^ \+//g' | sed 's/ \+/ /g'`"
-cd ../src
-make clean
-cd ../test_gen
 
 echo ' '
 #echo $RES1

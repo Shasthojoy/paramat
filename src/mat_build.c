@@ -137,7 +137,7 @@ void mat_print(const s_matrix* m, int verbose)
     }
 }
 
-s_matrix* mat_build_from_file(const char* file)
+s_matrix* mat_build_from_bin_file(const char* file)
 {
     int fd = 0;
     s_matrix* new_mat = NULL;
@@ -159,6 +159,75 @@ s_matrix* mat_build_from_file(const char* file)
         new_mat->arr = malloc(sizeof (double) * size);
         read(fd, new_mat->arr, size * sizeof (double));
         new_mat->it = new_mat->arr;
+        close(fd);
+    }
+    return new_mat;
+}
+
+static double read_double(char** file_map, size_t* size)
+{
+    double val = 0;
+    char*  str_val = NULL;
+
+    str_val = *file_map;
+    for (;(**file_map) != ' ' && *size > 0; --(*size), ++(*file_map));
+    **file_map = '\0';
+
+    val = atof(str_val);
+    **file_map = ' ';
+    return val;
+}
+
+static int is_sep(char c)
+{
+    return (c == ' ' || c == '\n');
+}
+
+s_matrix* mat_build_from_file(const char* file)
+{
+    int fd = 0;
+    s_matrix* new_mat = NULL;
+    size_t size = 0;
+    size_t mat_size = 0;
+    char*  file_map = NULL;
+    char* start = NULL;
+    struct stat st_f;
+    double* it = 0;
+
+    new_mat = malloc(sizeof (s_matrix));
+    if (new_mat)
+    {
+        fd = open(file, O_RDWR);
+        if (fd < 0 || fstat(fd, &st_f))
+        {
+            perror("");
+            return (NULL);
+        }
+        size = st_f.st_size;
+        file_map = mmap(NULL,
+                        size,
+                        PROT_READ | PROT_WRITE,
+                        MAP_PRIVATE,
+                        fd,
+                        0);
+        start = file_map;
+
+        for (;is_sep(*file_map) && size > 0; --size, ++file_map);
+        new_mat->l = read_double(&file_map, &size);
+        for (;is_sep(*file_map) && size > 0; --size, ++file_map);
+        new_mat->c = read_double(&file_map, &size);
+        new_mat->size_arr = new_mat->l * new_mat->c;
+        mat_size = new_mat->size_arr;
+        new_mat->arr = malloc(sizeof (double) * new_mat->size_arr);
+        it = new_mat->arr;
+        new_mat->it = it;
+        while (size > 0 && mat_size > 0)
+        {
+            for (;is_sep(*file_map) && size > 0; --size, ++file_map);
+            *(it++) = read_double(&file_map, &size);
+            --mat_size;
+        }
+        munmap(start, st_f.st_size);
         close(fd);
     }
     return new_mat;

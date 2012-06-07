@@ -14,6 +14,7 @@
 # include <errno.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+#include <sys/mman.h>
 # include <fcntl.h>
 
 # include "mat_struct.h"
@@ -27,6 +28,7 @@
 s_matrix* mat_build(size_t l, size_t c);
 s_matrix* mat_build_id(size_t l, size_t c);
 s_matrix* mat_build_0(size_t l, size_t c);
+s_matrix* mat_build_from_bin_file(const char* file);
 s_matrix* mat_build_from_file(const char* file);
  /**
  ** @brief mat_build* will create a matrix of given dimensions
