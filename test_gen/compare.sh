@@ -1,8 +1,8 @@
 #! /bin/bash
 
-./gen_mul.sh 'test' 'test1.oct' $1
+./gen_mul 'test1.pm' 'test2.pm' 'test1.oct' $1 $2
 
-RES1="`./a.out test1.pm test2.pm | sed 's/\.[0-9]*//g' | grep '[0-9]\+ [0-9]\+' | sed 's/^ //g' | sed 's/ +/ /g'`"
+RES1="`./mul_test test1.pm test2.pm | sed 's/\.[0-9]*//g' | grep '[0-9]\+ [0-9]\+' | sed 's/^ //g' | sed 's/ +/ /g'`"
 RES2="`octave -q test1.oct | sed 's/\.[0-9]*//g' | grep '[0-9]\+ \+[0-9]\+' | sed 's/^ \+//g' | sed 's/ \+/ /g'`"
 
 echo ' '

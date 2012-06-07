@@ -14,7 +14,7 @@ int main(int argc, char** argv)
   MAT_MULT(res, mat1, mat2, TT, ZERO(res, ID), ID);
   if (res)
   {
-    mat_print(res, 1);
+//    mat_print(res, 1);
     mat_free(mat1);
     mat_free(mat2);
     mat_free(res);
